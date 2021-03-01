@@ -1,21 +1,23 @@
 <?php
-	include("includes/config.php");
-	include("includes/classes/Account.php");
-	include("includes/classes/Constants.php");
+include("includes/config.php");
+include("includes/classes/Account.php");
+include("includes/classes/Constants.php");
 
-	$account = new Account($con);
+$account = new Account($con);
 
-	include("includes/handlers/register-handler.php");
-	include("includes/handlers/login-handler.php");
+include("includes/handlers/register-handler.php");
+include("includes/handlers/login-handler.php");
 
-	function getInputValue($name) {
-		if(isset($_POST[$name])) {
-			echo $_POST[$name];
-		}
+function getInputValue($name)
+{
+	if (isset($_POST[$name])) {
+		echo $_POST[$name];
 	}
+}
 ?>
 
 <html>
+
 <head>
 	<title>Welcome to Slotify!</title>
 
@@ -24,18 +26,18 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="assets/js/register.js"></script>
 </head>
+
 <body>
 	<?php
 
-	if(isset($_POST['registerButton'])) {
+	if (isset($_POST['registerButton'])) {
 		echo '<script>
 				$(document).ready(function() {
 					$("#loginForm").hide();
 					$("#registerForm").show();
 				});
 			</script>';
-	}
-	else {
+	} else {
 		echo '<script>
 				$(document).ready(function() {
 					$("#loginForm").show();
@@ -45,7 +47,7 @@
 	}
 
 	?>
-	
+
 
 	<div id="background">
 
@@ -61,7 +63,7 @@
 					</p>
 					<p>
 						<label for="loginPassword">Password</label>
-						<input id="loginPassword" name="loginPassword" type="password" placeholder="Your password" required>
+						<input id="loginPassword" name="loginPassword" autocomplete="on" type="password" placeholder="Your password" required>
 					</p>
 
 					<button type="submit" name="loginButton">LOG IN</button>
@@ -69,7 +71,7 @@
 					<div class="hasAccountText">
 						<span id="hideLogin">Don't have an account yet? Signup here.</span>
 					</div>
-					
+
 				</form>
 
 
@@ -113,12 +115,12 @@
 						<?php echo $account->getError(Constants::$passwordNotAlphanumeric); ?>
 						<?php echo $account->getError(Constants::$passwordCharacters); ?>
 						<label for="password">Password</label>
-						<input id="password" name="password" type="password" placeholder="Your password" required>
+						<input id="password" name="password" type="password" autocomplete="on" placeholder="Your password" required>
 					</p>
 
 					<p>
 						<label for="password2">Confirm password</label>
-						<input id="password2" name="password2" type="password" placeholder="Your password" required>
+						<input id="password2" name="password2" type="password" autocomplete="on" placeholder="Your password" required>
 					</p>
 
 					<button type="submit" name="registerButton">SIGN UP</button>
@@ -126,7 +128,7 @@
 					<div class="hasAccountText">
 						<span id="hideRegister">Already have an account? Log in here.</span>
 					</div>
-					
+
 				</form>
 
 
@@ -146,4 +148,5 @@
 	</div>
 
 </body>
+
 </html>
